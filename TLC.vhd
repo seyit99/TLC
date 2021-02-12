@@ -1,5 +1,5 @@
 ----------------------------------------------------------------------------------
--- Company: Marmara University
+-- Company: 
 -- Engineer: Cüneyt Kepildek
 -- 
 -- Create Date: 19.01.2021 18:12:00
