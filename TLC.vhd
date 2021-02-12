@@ -1,6 +1,6 @@
 ----------------------------------------------------------------------------------
 -- Company: Marmara University
--- Engineer: Cüneyt KEPÝLDEK
+-- Engineer: CÃ¼neyt Kepildek
 -- 
 -- Create Date: 19.01.2021 18:12:00
 -- Design Name: 
@@ -13,10 +13,10 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
---Bir anayol ile yan yol arasýndaki birleþimdeki trafik ýþýðý kontrol sistemi
---Yan yol üzerinde araba olup olmadýðýna dair bie sensör konumlanmýþtýr, 
---eðer araç var ise burdaki ýþýklarýda yeþil olarak deðiþtirmekte aksi takdirde bu ýþýðý
---sürekli kýrmýzýda tutmaktadýr.
+--Bir anayol ile yan yol arasÃ½ndaki birleÃ¾imdeki trafik Ã½Ã¾Ã½Ã°Ã½ kontrol sistemi
+--Yan yol Ã¼zerinde araba olup olmadÃ½Ã°Ã½na dair bie sensÃ¶r konumlanmÃ½Ã¾tÃ½r, 
+--eÃ°er araÃ§ var ise burdaki Ã½Ã¾Ã½klarÃ½da yeÃ¾il olarak deÃ°iÃ¾tirmekte aksi takdirde bu Ã½Ã¾Ã½Ã°Ã½
+--sÃ¼rekli kÃ½rmÃ½zÃ½da tutmaktadÃ½r.
 
 entity TLC is
   Port ( sensor : in std_logic;
@@ -59,8 +59,8 @@ process(current_state,delay_2s_H,delay_6s)
 begin
 case current_state is
 when IDLE => 
-  GREEN_LIGHT_ENABLE <= '0'; --Pasif : yeþil ýþýk bekleme sayacý
-  YELLOW_LIGHT_ENABLE <= '0';-- Pasif : sarý ýþýk bekleme sayacý 
+  GREEN_LIGHT_ENABLE <= '0'; --Pasif : yeÃ¾il Ã½Ã¾Ã½k bekleme sayacÃ½
+  YELLOW_LIGHT_ENABLE <= '0';-- Pasif : sarÃ½ Ã½Ã¾Ã½k bekleme sayacÃ½ 
   --YELLOW_LIGHT2_ENABLE <= '0';-- disable YELLOW light Farmway delay counting
   T1 <= "100"; -- Red lights on(all)
   T2 <= "10";
@@ -72,146 +72,146 @@ when IDLE =>
   T8 <= "10";  
   next_state <= s1;
 when s1 =>  --
-  GREEN_LIGHT_ENABLE <= '0'; --Pasif : yeþil ýþýk bekleme sayacý
-  YELLOW_LIGHT_ENABLE <= '1';-- Aktif : sarý ýþýk bekleme sayacý 
-  T1 <= "010"; --sarý
+  GREEN_LIGHT_ENABLE <= '0'; --Pasif : yeÃ¾il Ã½Ã¾Ã½k bekleme sayacÃ½
+  YELLOW_LIGHT_ENABLE <= '1';-- Aktif : sarÃ½ Ã½Ã¾Ã½k bekleme sayacÃ½ 
+  T1 <= "010"; --sarÃ½
   T2 <= "10";
-  T3 <= "010"; --sarý
+  T3 <= "010"; --sarÃ½
   T4 <= "10";
   T5 <= "100";
   T6 <= "10";
   T7 <= "100";
   T8 <= "10";
-  if(delay_2s_H='1') then --Sarý ýþýk 3 sn bekletir sonraki aþamaya geçer.
+  if(delay_2s_H='1') then --SarÃ½ Ã½Ã¾Ã½k 3 sn bekletir sonraki aÃ¾amaya geÃ§er.
     next_state <= s2;
   else
     next_state <= s1;
   end if;
 
 when s2 =>
-  GREEN_LIGHT_ENABLE <= '1';--Aktif : yeþil ýþýk bekleme sayacý
-  --RED_LIGHT_ENABLE <= '0';-- Pasif : kýrýmýzý ýþýk bekleme sayacý
-  YELLOW_LIGHT_ENABLE <= '0';-- Pasif : sarý ýþýk bekleme sayacý
-  --YELLOW_LIGHT2_ENABLE <= '0';-- Pasif : sarý ýþýk bekleme sayacý   
-  T1 <= "001"; -- yeþil
+  GREEN_LIGHT_ENABLE <= '1';--Aktif : yeÃ¾il Ã½Ã¾Ã½k bekleme sayacÃ½
+  --RED_LIGHT_ENABLE <= '0';-- Pasif : kÃ½rÃ½mÃ½zÃ½ Ã½Ã¾Ã½k bekleme sayacÃ½
+  YELLOW_LIGHT_ENABLE <= '0';-- Pasif : sarÃ½ Ã½Ã¾Ã½k bekleme sayacÃ½
+  --YELLOW_LIGHT2_ENABLE <= '0';-- Pasif : sarÃ½ Ã½Ã¾Ã½k bekleme sayacÃ½   
+  T1 <= "001"; -- yeÃ¾il
   T2 <= "10";
-  T3 <= "001"; -- yeþil
+  T3 <= "001"; -- yeÃ¾il
   T4 <= "10";
   T5 <= "100";
   T6 <= "10";
   T7 <= "100";
   T8 <= "10";
-  if(delay_6s='1') then --Yeþil ýþýk 6 sn bekletir sonraki aþamaya geçer.
+  if(delay_6s='1') then --YeÃ¾il Ã½Ã¾Ã½k 6 sn bekletir sonraki aÃ¾amaya geÃ§er.
     next_state <= s3;
   else
     next_state <= s2;
   end if;
   
   when s3 =>
-  GREEN_LIGHT_ENABLE <= '0';--Pasif : yeþil ýþýk bekleme sayacý
-  --RED_LIGHT_ENABLE <= '0';-- Pasif : kýrýmýzý ýþýk bekleme sayacý
-  YELLOW_LIGHT_ENABLE <= '1';-- Aktif : sarý ýþýk bekleme sayacý
+  GREEN_LIGHT_ENABLE <= '0';--Pasif : yeÃ¾il Ã½Ã¾Ã½k bekleme sayacÃ½
+  --RED_LIGHT_ENABLE <= '0';-- Pasif : kÃ½rÃ½mÃ½zÃ½ Ã½Ã¾Ã½k bekleme sayacÃ½
+  YELLOW_LIGHT_ENABLE <= '1';-- Aktif : sarÃ½ Ã½Ã¾Ã½k bekleme sayacÃ½
   --YELLOW_LIGHT2_ENABLE <= '1';  
-  T1 <= "010"; -- sarý
+  T1 <= "010"; -- sarÃ½
   T2 <= "10";
-  T3 <= "010"; -- sarý
+  T3 <= "010"; -- sarÃ½
   T4 <= "10";
   T5 <= "100";
   T6 <= "10";
   T7 <= "100";
   T8 <= "10";
-  if(delay_2s_H='1') then --Sarý ýþýk 2 sn bekletir sonraki aþamaya geçer.
+  if(delay_2s_H='1') then --SarÃ½ Ã½Ã¾Ã½k 2 sn bekletir sonraki aÃ¾amaya geÃ§er.
     next_state <= s4;
   else
     next_state <= s3;
   end if;
   
   when s4 =>
-  GREEN_LIGHT_ENABLE <= '1';--Aktif : yeþil ýþýk bekleme sayacý
-  --RED_LIGHT_ENABLE <= '0';-- Pasif : kýrýmýzý ýþýk bekleme sayacý
-  YELLOW_LIGHT_ENABLE <= '0';-- Pasif : sarý ýþýk bekleme sayacý  
-  --YELLOW_LIGHT2_ENABLE <= '0';-- Pasif : sarý ýþýk bekleme sayacý 
+  GREEN_LIGHT_ENABLE <= '1';--Aktif : yeÃ¾il Ã½Ã¾Ã½k bekleme sayacÃ½
+  --RED_LIGHT_ENABLE <= '0';-- Pasif : kÃ½rÃ½mÃ½zÃ½ Ã½Ã¾Ã½k bekleme sayacÃ½
+  YELLOW_LIGHT_ENABLE <= '0';-- Pasif : sarÃ½ Ã½Ã¾Ã½k bekleme sayacÃ½  
+  --YELLOW_LIGHT2_ENABLE <= '0';-- Pasif : sarÃ½ Ã½Ã¾Ã½k bekleme sayacÃ½ 
   T1 <= "100"; 
-  T2 <= "01"; --yeþil 
+  T2 <= "01"; --yeÃ¾il 
   T3 <= "100"; 
-  T4 <= "01"; --yeþil
+  T4 <= "01"; --yeÃ¾il
   T5 <= "100";
   T6 <= "10";
   T7 <= "100";
   T8 <= "10";
-  if(delay_6s='1') then --Yeþil ýþýk 6 sn bekletir sonraki aþamaya geçer.
+  if(delay_6s='1') then --YeÃ¾il Ã½Ã¾Ã½k 6 sn bekletir sonraki aÃ¾amaya geÃ§er.
     next_state <= s5;
   else
     next_state <= s4;
   end if;
   
   when s5 =>
-  GREEN_LIGHT_ENABLE <= '0';--Pasif : yeþil ýþýk bekleme sayacý
-  --RED_LIGHT_ENABLE <= '0';-- Pasif : kýrýmýzý ýþýk bekleme sayacý
-  YELLOW_LIGHT_ENABLE <= '1';-- Aktif : sarý ýþýk bekleme sayacý  
+  GREEN_LIGHT_ENABLE <= '0';--Pasif : yeÃ¾il Ã½Ã¾Ã½k bekleme sayacÃ½
+  --RED_LIGHT_ENABLE <= '0';-- Pasif : kÃ½rÃ½mÃ½zÃ½ Ã½Ã¾Ã½k bekleme sayacÃ½
+  YELLOW_LIGHT_ENABLE <= '1';-- Aktif : sarÃ½ Ã½Ã¾Ã½k bekleme sayacÃ½  
   T1 <= "100"; 
   T2 <= "10";
   T3 <= "100"; 
   T4 <= "10"; 
-  T5 <= "010";--sarý
+  T5 <= "010";--sarÃ½
   T6 <= "10";
-  T7 <= "010";--sarý
+  T7 <= "010";--sarÃ½
   T8 <= "10";
-  if(delay_2s_H='1') then --Sarý ýþýk 2 sn bekletir sonraki aþamaya geçer.
+  if(delay_2s_H='1') then --SarÃ½ Ã½Ã¾Ã½k 2 sn bekletir sonraki aÃ¾amaya geÃ§er.
     next_state <= s6;
   else
     next_state <= s5;
   end if;
   
   when s6 =>
-  GREEN_LIGHT_ENABLE <= '1';--Aktif : yeþil ýþýk bekleme sayacý
-  --RED_LIGHT_ENABLE <= '0';-- Pasif : kýrýmýzý ýþýk bekleme sayacý
-  YELLOW_LIGHT_ENABLE <= '0';-- Pasif : sarý ýþýk bekleme sayacý  
+  GREEN_LIGHT_ENABLE <= '1';--Aktif : yeÃ¾il Ã½Ã¾Ã½k bekleme sayacÃ½
+  --RED_LIGHT_ENABLE <= '0';-- Pasif : kÃ½rÃ½mÃ½zÃ½ Ã½Ã¾Ã½k bekleme sayacÃ½
+  YELLOW_LIGHT_ENABLE <= '0';-- Pasif : sarÃ½ Ã½Ã¾Ã½k bekleme sayacÃ½  
   T1 <= "100"; 
   T2 <= "10"; 
   T3 <= "100"; 
   T4 <= "10";
-  T5 <= "001";--Yeþil
+  T5 <= "001";--YeÃ¾il
   T6 <= "10";
-  T7 <= "001";--Yeþil
+  T7 <= "001";--YeÃ¾il
   T8 <= "10";
-  if(delay_6s='1') then --Yeþil ýþýk 6 sn bekletir sonraki aþamaya geçer.
+  if(delay_6s='1') then --YeÃ¾il Ã½Ã¾Ã½k 6 sn bekletir sonraki aÃ¾amaya geÃ§er.
     next_state <= s7;
   else
     next_state <= s6;
   end if;
   
   when s7 =>
-  GREEN_LIGHT_ENABLE <= '0';--Pasif : yeþil ýþýk bekleme sayacý
-  --RED_LIGHT_ENABLE <= '0';-- Pasif : kýrýmýzý ýþýk bekleme sayacý
-  YELLOW_LIGHT_ENABLE <= '1';-- Aktif : sarý ýþýk bekleme sayacý  
+  GREEN_LIGHT_ENABLE <= '0';--Pasif : yeÃ¾il Ã½Ã¾Ã½k bekleme sayacÃ½
+  --RED_LIGHT_ENABLE <= '0';-- Pasif : kÃ½rÃ½mÃ½zÃ½ Ã½Ã¾Ã½k bekleme sayacÃ½
+  YELLOW_LIGHT_ENABLE <= '1';-- Aktif : sarÃ½ Ã½Ã¾Ã½k bekleme sayacÃ½  
   T1 <= "100"; 
   T2 <= "10";
   T3 <= "100"; 
   T4 <= "10"; 
-  T5 <= "010";--sarý
+  T5 <= "010";--sarÃ½
   T6 <= "10";
-  T7 <= "010";--sarý
+  T7 <= "010";--sarÃ½
   T8 <= "10";
-  if(delay_2s_H='1') then --Sarý ýþýk 2 sn bekletir sonraki aþamaya geçer.
+  if(delay_2s_H='1') then --SarÃ½ Ã½Ã¾Ã½k 2 sn bekletir sonraki aÃ¾amaya geÃ§er.
     next_state <= s8;
   else
     next_state <= s7;
   end if;
   
   when s8 =>
-  GREEN_LIGHT_ENABLE <= '1';--Aktif : yeþil ýþýk bekleme sayacý
-  --RED_LIGHT_ENABLE <= '0';-- Pasif : kýrýmýzý ýþýk bekleme sayacý
-  YELLOW_LIGHT_ENABLE <= '0';-- Pasif : sarý ýþýk bekleme sayacý  
+  GREEN_LIGHT_ENABLE <= '1';--Aktif : yeÃ¾il Ã½Ã¾Ã½k bekleme sayacÃ½
+  --RED_LIGHT_ENABLE <= '0';-- Pasif : kÃ½rÃ½mÃ½zÃ½ Ã½Ã¾Ã½k bekleme sayacÃ½
+  YELLOW_LIGHT_ENABLE <= '0';-- Pasif : sarÃ½ Ã½Ã¾Ã½k bekleme sayacÃ½  
   T1 <= "100"; 
   T2 <= "10"; 
   T3 <= "100"; 
   T4 <= "10";
   T5 <= "100";
-  T6 <= "01";--Yeþil
+  T6 <= "01";--YeÃ¾il
   T7 <= "100";
-  T8 <= "01";--Yeþil
-  if(delay_6s='1') then --Yeþil ýþýk 6 sn bekletir sonraki aþamaya geçer.
+  T8 <= "01";--YeÃ¾il
+  if(delay_6s='1') then --YeÃ¾il Ã½Ã¾Ã½k 6 sn bekletir sonraki aÃ¾amaya geÃ§er.
     next_state <= s1;
   else
     next_state <= s8;
@@ -219,7 +219,7 @@ when s2 =>
   when others => next_state <= s1;
   end case;
   end process;
-  --Bu kýsýmda yeþil ve sarý ýþýklar için bekleme sürelerini saydýk
+  --Bu kÃ½sÃ½mda yeÃ¾il ve sarÃ½ Ã½Ã¾Ã½klar iÃ§in bekleme sÃ¼relerini saydÃ½k
 process(clk)
 begin
 if(rising_edge(clk)) then 
